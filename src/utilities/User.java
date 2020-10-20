@@ -3,11 +3,21 @@ package utilities;
 public class User {
     private String username, name;
     private int yearOfBirth;
+    private Mailbox box;
 
-    public User(String username, String name, int yearOfBirth) {
+    public User(String username, String name, int yearOfBirth, Mailbox box) {
         this.username = username;
         this.name = name;
         this.yearOfBirth = yearOfBirth;
+        this.box = box;
+    }
+
+    public Mailbox getBox() {
+        return box;
+    }
+
+    public void setBox(Mailbox box) {
+        this.box = box;
     }
 
     public String getUsername() {
