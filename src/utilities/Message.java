@@ -1,14 +1,23 @@
 package utilities;
 
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Message {
     private String sender, receiver; //we have to use their usernames
     private String body, subject;
-    private LocalDateTime timestamp; //message creation
+    private Timestamp timestamp; //message creation
 
-    public Message(String sender, String receiver, String body, String subject, LocalDateTime timestamp) {
+    public Message(String sender, String receiver, String body, String subject) {
+        this.sender = sender;
+        this.receiver = receiver;
+        this.body = body;
+        this.subject = subject;
+    }
+
+    public Message(String sender, String receiver, String body, String subject, Timestamp timestamp) {
         this.sender = sender;
         this.receiver = receiver;
         this.body = body;
@@ -48,11 +57,11 @@ public class Message {
         this.subject = subject;
     }
 
-    public LocalDateTime getTimestamp() {
+    public Timestamp getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
+    public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
 }
