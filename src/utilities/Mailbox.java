@@ -1,11 +1,13 @@
 package utilities;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 //els mailboxs han de ser iterables y sha d'aplicar decorator pattern?
-public class Mailbox {
+public class Mailbox{
     private List<Message> box = new LinkedList<>();
     private MailStore store;
 
@@ -17,10 +19,8 @@ public class Mailbox {
         box = store.getMail(username);
     }
     //retorna la llista de correus q ha fer el update
-    public void listMail(){
-        for(Message m: box){
-            System.out.println(m.getSubject());
-        }
+    public List<Message> listMail(){
+        return box;
     }
 
     // envia el missatge al mailstore
@@ -28,15 +28,15 @@ public class Mailbox {
         store.sendMail(message);
     }
 
-    public void getMail(){} //li hem de passar un mètode de ordenació per paràmetre
+    //li hem de passar un mètode de ordenació per paràmetre STREAMS
+    public void getMail(String value){
 
-    public void filterMail(){}
-
-    public List<Message> getBox() {
-        return box;
     }
 
-    public void setBox(List<Message> box) {
-        this.box = box;
+    //filtramos por Sender
+    public List<Message> filterMail(String value){
+        List<Message> filter = box.stream().filter(x->value.equals(x.getSender())).collect(Collectors.toList());
+        return filter;
     }
+
 }
