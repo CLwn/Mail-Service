@@ -16,13 +16,13 @@ public class MailStoreFiles implements MailStore {
         pos.print(message.getSender()+";");
         pos.print(message.getReceiver()+";");
         pos.print(message.getSubject()+";");
-        pos.println(message.getBody()+";");
-        //pos.println(message.getTimestamp());
+        pos.print(message.getBody()+";");
+        pos.println(message.getTimestamp()+";");
         pos.close();
     }
 
     @Override
-    public List<Message> getMail(String username) throws FileNotFoundException{//, ParseException { //obtenir tots els missatges de un user concret.
+    public List<Message> getMail(String username) throws FileNotFoundException, ParseException {//, ParseException { //obtenir tots els missatges de un user concret.
         List<Message> list = new LinkedList<>();
         Scanner reader = new Scanner(file);
         reader.useDelimiter(";");
@@ -33,12 +33,12 @@ public class MailStoreFiles implements MailStore {
             if(receiver.equalsIgnoreCase(username)){
                 String subject = reader.next();
                 String body = reader.next();
+                String date = reader.next();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+                Date parsedDate = dateFormat.parse(date);
+                Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
                 reader.nextLine();
-                //String date = reader.next();
-                //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-                //Date parsedDate = dateFormat.parse(date);
-                //Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
-                Message message = new Message(sender,receiver,body,subject);
+                Message message = new Message(sender,receiver,body,subject,timestamp);
                 list.add(message);
             }
 

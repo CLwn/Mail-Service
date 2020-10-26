@@ -2,6 +2,8 @@ package utilities;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MailSystem {
     private List<User> userList = new LinkedList<>();
@@ -20,10 +22,10 @@ public class MailSystem {
     }
 
     public List<Message> getAllMessage() throws Exception{
-        List<Message> total = new LinkedList<>();
+        List<Message> total;
         for(User user: userList){
-            System.out.println("hola");
             total = mailStore.getMail(user.getUsername());
+            list = Stream.concat(list.stream(), total.stream()).collect(Collectors.toList());
         }
         return list;
     }
@@ -38,7 +40,7 @@ public class MailSystem {
 
     //Queries dintre de metodes que anirem fent
     public void countMessages() throws Exception {
-        if (list == null) list = getAllMessage();
+        list = getAllMessage();
         long value = list.stream().count();
         System.out.println(value);
 

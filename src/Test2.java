@@ -1,4 +1,6 @@
 import utilities.*;
+
+import javax.swing.*;
 import java.util.List;
 
 
@@ -14,6 +16,7 @@ public class Test2 {
         pepebox.sendMail(new Message("pepe", "ant","Como estas bro? espero que bien", "Saludos"));
         pepebox.sendMail(new Message("pepe", "ant", "Quiero saber si mi gestor email va bien", "Urgente"));
         pepebox.sendMail(new Message("pepe", "ant", "Funciona correctamente", "Todo Correcto"));
+        pepebox.sendMail(new Message("ant", "pepe", "Callaitos", "Paias"));
         antbox.updateMail("ant");
 
         /**
@@ -27,6 +30,14 @@ public class Test2 {
          */
         List<User> users = mailSystem.getAllUsers();
         for (User user: users) System.out.println(user.getUsername());
+
+        /**
+         * muestra todoss los mensajes
+         */
+        //List<Message> totalmsg = mailSystem.getAllMessage();
+        //for (Message msg: totalmsg) System.out.println(msg.getSubject());
+
+        mailSystem.countMessages();
 
     }
 }

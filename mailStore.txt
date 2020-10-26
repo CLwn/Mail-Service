@@ -1,2 +1,0 @@
-pepe;juan;Bienvenido!;Buenas Juan, como estás?;
-pepe;juan;Bienvenido!;segundo?;

@@ -1,48 +1,53 @@
 import utilities.*;
 
-import java.io.IOException;
 import java.sql.Timestamp;
-import java.text.ParseException;
 import java.util.List;
 
 public class Test {
     public static void main(String[] args) throws Exception {
-        MailStore mail = new MailStoreFiles();
-        MailStore mail2 = new MailStoreMemory();
+        MailSystem mailSystem = new MailSystem(new MailStoreFiles());
+        Mailbox pepebox = mailSystem.createNewUser("pepe", "Pedro García", 1998);
+        Mailbox antbox = mailSystem.createNewUser("ant", "Antonio Ramon", 1995);
 
-        List<Message> list;
-        Mailbox pepebox = new Mailbox(mail2);
-        Mailbox juanbox = new Mailbox(mail2);
-        User user1 = new User("pepe", "pedro García", 1991, pepebox);
-        User user2 = new User("juan", "Juan Arcos", 1979, juanbox);
+        antbox.sendMail(new Message("ant", "pepe", "Callaitos", "Paias", new Timestamp(System.currentTimeMillis())));
+        antbox.sendMail(new Message("ant", "pepe", "Callaitos2222", "Paias222s", new Timestamp(System.currentTimeMillis())));
+        pepebox.sendMail(new Message("pepe", "ant","Como estas bro? espero que bien", "Saludos", new Timestamp(System.currentTimeMillis())));
+        //Thread.sleep(4000);
+        pepebox.sendMail(new Message("pepe", "ant", "Quiero saber si mi gestor email va bien", "Urgente", new Timestamp(System.currentTimeMillis())));
+        pepebox.sendMail(new Message("pepe", "ant", "Funciona correctamente", "Correcto", new Timestamp(System.currentTimeMillis())));
+        antbox.updateMail("ant");
+        pepebox.updateMail("pepe");
 
-        //Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        Message msg = new Message(user1.getUsername(), user2.getUsername(), "Buenas Juan, como estás?",
-                "Bienvenido!");//, new Timestamp(System.currentTimeMillis()));
-        Message msg2 = new Message(user1.getUsername(), user2.getUsername(), "segundo?",
-                "Bienvenido!");//, new Timestamp(System.currentTimeMillis()));
-        Message msg3 = new Message(user1.getUsername(), user2.getUsername(), "que haces con tu vida paias",
-                "Bienvenido!");//, new Timestamp(System.currentTimeMillis()));
-
-        user1.getBox().sendMail(msg);
-        user1.getBox().sendMail(msg2);
-        user2.getBox().updateMail(user2.getUsername());
-        user2.getBox().listMail();
         /**
-        mail2.sendMail(msg2);
-        mail2.sendMail(msg);
-        mail2.sendMail(msg3);
-        list = mail2.getMail("juan");
+         * El timestamp al storeMemory funciona, pero al StoreFiles a medias i think
+         */
+        List<Message> list = antbox.listMail();
+        for (Message msg: list){
+            //System.out.println(msg.getSender());
+            //System.out.println(msg.getReceiver());
+            //System.out.println(msg.getSubject());
+            System.out.println(msg.getTimestamp());
+        }
 
-         mail.sendMail(msg);
-         mail.sendMail(msg2); //s'ha d'utilitzar el send mail del mailboxlist = mail.getMail("juan");
-        for (Message message : list) {
-            System.out.println(message.getSender());
-            System.out.println(message.getReceiver());
-            System.out.println(message.getSubject());
-            System.out.println(message.getBody());
-            System.out.println("--------------------------");
-            //System.out.println(message.getTimestamp());
-        }*/
+        /**
+         * listea bien
+         */
+        List<Message> list2 = antbox.listMail();
+        for (Message msg: list2) System.out.println(msg.getBody());
+
+        /**
+         * muestra los usuarios bien
+         */
+        List<User> users = mailSystem.getAllUsers();
+        for (User user: users) System.out.println(user.getUsername());
+
+        /**
+         * muestra todoss los mensajes, pierde un mensaje en cada run
+         */
+        //List<Message> totalmsg = mailSystem.getAllMessage();
+        //for (Message msg: totalmsg) System.out.println(msg.getSubject());
+
+
+        mailSystem.countMessages();
     }
 }
