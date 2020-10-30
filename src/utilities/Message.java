@@ -10,14 +10,7 @@ public class Message {
     private String body, subject;
     private Timestamp timestamp; //message creation
 
-    public Message(String sender, String receiver, String body, String subject) {
-        this.sender = sender;
-        this.receiver = receiver;
-        this.body = body;
-        this.subject = subject;
-    }
-
-    public Message(String sender, String receiver, String body, String subject, Timestamp timestamp) {
+    public Message(String sender, String receiver, String subject, String body, Timestamp timestamp) {
         this.sender = sender;
         this.receiver = receiver;
         this.body = body;

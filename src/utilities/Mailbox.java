@@ -8,11 +8,17 @@ import java.util.stream.Collectors;
 
 //els mailboxs han de ser iterables y sha d'aplicar decorator pattern?
 public class Mailbox{
+    private String username;
     private List<Message> box = new LinkedList<>();
     private MailStore store;
 
-    public Mailbox(MailStore store) {
+    public Mailbox(MailStore store, String username){
         this.store = store;
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public void updateMail(String username) throws Exception { //utilitzar streams??

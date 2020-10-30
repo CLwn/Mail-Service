@@ -47,7 +47,25 @@ public class Test {
         //List<Message> totalmsg = mailSystem.getAllMessage();
         //for (Message msg: totalmsg) System.out.println(msg.getSubject());
 
-
+        /**
+         * Cuenta todos los mensajes de todos los usuarios correctamente. Cuenta el total
+         */
         mailSystem.countMessages();
+
+        /**
+         * Hace correctamente el promedio de mensajes por usuario
+         */
+        mailSystem.averageMessagesPerUser();
+
+        /**
+         * Words count funcionando correctamente
+         */
+        mailSystem.countWords("ant");
+
+        /**
+         * funciona el coger mensajes de usario de edades superiores
+         */
+        for (Message messg : mailSystem.getMessageByYO(1996)) System.out.println(messg.getReceiver());
+
     }
 }
