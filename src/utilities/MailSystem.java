@@ -43,7 +43,7 @@ public class MailSystem {
     //Queries dintre de metodes que anirem fent
     public void countMessages() throws Exception {
         long msg = getAllMessage().stream().count();
-        System.out.println(msg);
+        System.out.println("there are "+msg+" messages.");
 
     }
 

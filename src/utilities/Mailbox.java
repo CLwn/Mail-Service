@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 //els mailboxs han de ser iterables y sha d'aplicar decorator pattern?
@@ -34,15 +35,15 @@ public class Mailbox{
         store.sendMail(message);
     }
 
-    //li hem de passar un mètode de ordenació per paràmetre STREAMS
-    public void getMail(String value){
+    //li hem de passar un mètode de ordenació per paràmetre STREAMS COMPARATOR
+    public void getMail(){
+            }
 
-    }
-
-    //filtramos por Sender
-    public List<Message> filterMail(String value){
-        List<Message> filter = box.stream().filter(x->value.equals(x.getSender())).collect(Collectors.toList());
-        return filter;
+    //filtramos por Sender PREDICATE
+    public List<Message> filterMail(Predicate predicate){
+        //List<Message> list = box.stream().filter(predicate).forEach(p -> System.out.println(((Message) p).getSender()))
+        List<Message> list = (List<Message>) box.stream().filter(predicate).collect(Collectors.toList());
+        return list;
     }
 
 }
