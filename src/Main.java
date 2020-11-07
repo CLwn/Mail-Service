@@ -1,4 +1,8 @@
-import utilities.*;
+import Structure.MailStoreMemory;
+import Structure.MailSystem;
+import Structure.Mailbox;
+import Structure.Message;
+
 import java.sql.Timestamp;
 import static utilities.MailboxPredicates.*;
 
@@ -48,12 +52,7 @@ public class Main {
          * filter the messages by subject
          */
         for (Message message: davidbox.filterMail(filterBySubject("Welcome"))){
-            System.out.println("----Message----");
-            System.out.println("Sender: "+message.getSender());
-            System.out.println("Receiver: "+message.getReceiver());
-            System.out.println("Subject: "+message.getSubject());
-            System.out.println(message.getBody());
-            System.out.println(message.getTimestamp());
+            System.out.println(message.toString());
         }
 
         System.out.println("-----------------------FILTER BY SENDER------------------------------");
@@ -62,12 +61,7 @@ public class Main {
          * filter the messages by sender
          */
         for (Message message: davidbox.filterMail(filterBySender(salombox.getUsername()))){
-            System.out.println("----Message----");
-            System.out.println("Sender: "+message.getSender());
-            System.out.println("Receiver: "+message.getReceiver());
-            System.out.println("Subject: "+message.getSubject());
-            System.out.println(message.getBody());
-            System.out.println(message.getTimestamp());
+            System.out.println(message.toString());
         }
 
         System.out.println("-------------------------All MESSAGES----------------------------");
@@ -76,12 +70,7 @@ public class Main {
          * retrieve all messages with mail System
          */
         for (Message message: mailSystem.getAllMessage()){
-            System.out.println("----Message----");
-            System.out.println("Sender: "+message.getSender());
-            System.out.println("Receiver: "+message.getReceiver());
-            System.out.println("Subject: "+message.getSubject());
-            System.out.println(message.getBody());
-            System.out.println(message.getTimestamp());
+            System.out.println(message.toString());
         }
 
         System.out.println("-------------------------COUNT MESSAGES----------------------------");

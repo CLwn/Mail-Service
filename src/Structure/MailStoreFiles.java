@@ -1,4 +1,7 @@
-package utilities;
+package Structure;
+
+import Structure.MailStore;
+import Structure.Message;
 
 import java.io.*;
 import java.sql.Timestamp;

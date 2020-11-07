@@ -1,10 +1,10 @@
-import utilities.*;
+import Structure.*;
 
-import java.sql.Time;
 import java.sql.Timestamp;
+
 import java.util.List;
 import static utilities.MailboxPredicates.*;
-
+import static utilities.MailBoxComparators.*;
 
 public class Test2 {
     public static void main(String[] args) throws Exception {
@@ -20,7 +20,7 @@ public class Test2 {
         pepebox.sendMail(new Message("pepe", "ant", "Quiero saber si mi gestor email va bien", "Urgente",new Timestamp(System.currentTimeMillis())));
         pepebox.sendMail(new Message("pepe", "ant", "Funciona correctamente", "Todo Correcto",new Timestamp(System.currentTimeMillis())));
         antbox.sendMail(new Message("ant", "pepe", "Callaitos", "Paias",new Timestamp(System.currentTimeMillis())));
-
+        pepebox.sendMail(new Message("pepe", "santi", "try 4", "Urgente",new Timestamp(System.currentTimeMillis())));
         Thread.sleep(4000);
         Timestamp time = new Timestamp(System.currentTimeMillis());
         santibox.sendMail(new Message("santi", "ant", "Buenas soy santiago", "Paias",time));
@@ -81,5 +81,14 @@ public class Test2 {
         System.out.println("-----------------------------------------------");
         for (Message message: antbox.filterMail(filterBySubject("Buenas"))) System.out.println(message.getSender());
 
+        System.out.println("----------------------EL NUEVO TRY-----------------------------");
+
+        antbox.getMail(orderBySender());
+
+        mailSystem.getMailboxList().forEach(mailbox -> System.out.println(mailbox));
+
+        System.out.println("----------------------Filtrar todos los mensajes-----------------------------");
+
+        for (Message message: mailSystem.filterAllMessage(filterBySender("pepe"))) System.out.println(message.toString());;
     }
 }

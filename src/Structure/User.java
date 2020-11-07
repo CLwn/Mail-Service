@@ -1,4 +1,6 @@
-package utilities;
+package Structure;
+
+import Structure.Mailbox;
 
 public class User {
     private String username, name;

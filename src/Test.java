@@ -1,4 +1,4 @@
-import utilities.*;
+import Structure.*;
 
 import java.sql.Timestamp;
 import java.util.List;

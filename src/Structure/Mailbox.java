@@ -1,7 +1,7 @@
-package utilities;
+package Structure;
 
-import javax.swing.*;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -36,8 +36,9 @@ public class Mailbox{
     }
 
     //li hem de passar un mètode de ordenació per paràmetre STREAMS COMPARATOR
-    public void getMail(){
-            }
+    public void getMail(Comparator comparator){
+        box.stream().sorted(comparator).forEach(System.out::println);
+    }
 
     //filtramos por Sender PREDICATE
     public List<Message> filterMail(Predicate predicate){

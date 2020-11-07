@@ -1,8 +1,11 @@
-package utilities;
+package Structure;
+
+import utilities.MailBoxComparators;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -38,7 +41,10 @@ public class MailSystem {
     }
 
     //TODO
-    public void filterAllMessage(String value){}
+    public List<Message> filterAllMessage(Predicate predicate) throws Exception {
+        List<Message> list = getAllMessage();
+        return (List<Message>) list.stream().filter(predicate).collect(Collectors.toList());
+    }
 
     //Queries dintre de metodes que anirem fent
     public void countMessages() throws Exception {

@@ -1,5 +1,7 @@
 package utilities;
 
+import Structure.Message;
+
 import java.sql.Timestamp;
 import java.util.function.Predicate;
 

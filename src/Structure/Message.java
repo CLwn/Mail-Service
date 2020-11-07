@@ -1,9 +1,6 @@
-package utilities;
+package Structure;
 
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 public class Message {
     private String sender, receiver; //we have to use their usernames
@@ -56,5 +53,15 @@ public class Message {
 
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return "-------Message----------" +"\n"+
+                "sender: " + sender + "\n" +
+                "receiver: " + receiver + "\n" +
+                "subject: " +subject + "\n" +
+                body + "\n" +
+                timestamp;
     }
 }
