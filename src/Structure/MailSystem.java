@@ -1,7 +1,5 @@
 package Structure;
 
-import utilities.MailBoxComparators;
-
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -85,6 +83,20 @@ public class MailSystem {
         }
         return list;
     }
+
+    public List<Message> getMessageByYO(Predicate predicate) throws Exception {
+        List<Message> result = new LinkedList<>();
+        List<Message> messages = getAllMessage();
+        List<User> users = (List<User>) userList.stream().filter(predicate).collect(Collectors.toList());
+        for(User user: users){
+            for(Message message: messages){
+                if (message.getSender().equalsIgnoreCase(user.getUsername()))
+                    result.add(message);
+            }
+        }
+        return result;
+    }
+
 
     public List<Mailbox> getMailboxList() {
         return mailboxList;

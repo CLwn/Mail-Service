@@ -4,7 +4,7 @@ import Structure.Mailbox;
 import Structure.Message;
 
 import java.sql.Timestamp;
-import static utilities.MailboxPredicates.*;
+import static utilities.Predicates.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -17,7 +17,7 @@ public class Main {
          * Create users
          */
         Mailbox joshbox = mailSystem.createNewUser("josh", "Josh Hammond", 1998);
-        Mailbox salombox = mailSystem.createNewUser("salom", "Artur Salom", 1996);
+        Mailbox salombox = mailSystem.createNewUser("salom", "Artur Salom", 2001);
         Mailbox davidbox = mailSystem.createNewUser("david", "David Arqués", 1992);
 
         /**
@@ -86,5 +86,15 @@ public class Main {
          */
         mailSystem.averageMessagesPerUser();
 
+        System.out.println("-------------------------FILTER BY SINGLE WORD----------------------------");
+        /**
+         * Filter by single word
+         */
+        for (Message message: mailSystem.filterAllMessage(filterSubjectSingleWord("urgent")))
+            System.out.println(message.toString());
+
+        //ha de mostrar el sender que sigui menor de 2000 no sender o receiver
+        System.out.println("-------------------------FILTER BY YEAR----------------------------");
+        for(Message message: mailSystem.getMessageByYO(filterByAge(2000)))System.out.println(message.toString());
     }
 }

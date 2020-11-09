@@ -4,7 +4,7 @@ import Structure.Message;
 
 import java.util.Comparator;
 
-public class MailBoxComparators {
+public class Comparators {
 
     public static Comparator<Message> orderBySender(){
         return Comparator.comparing(Message::getSender);

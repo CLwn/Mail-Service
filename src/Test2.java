@@ -3,8 +3,8 @@ import Structure.*;
 import java.sql.Timestamp;
 
 import java.util.List;
-import static utilities.MailboxPredicates.*;
-import static utilities.MailBoxComparators.*;
+import static utilities.Predicates.*;
+import static utilities.Comparators.*;
 
 public class Test2 {
     public static void main(String[] args) throws Exception {
