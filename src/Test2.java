@@ -61,7 +61,6 @@ public class Test2 {
          */
         mailSystem.averageMessagesPerUser();
 
-        mailSystem.groupMessagePerSubject("pepe");
 
         /**
          * Word count funcionando correctamente

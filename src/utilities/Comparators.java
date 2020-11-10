@@ -15,6 +15,7 @@ public class Comparators {
     }
 
     public static Comparator<Message> orderByTimestamp(){
-        return Comparator.comparing(Message::getTimestamp);
+        return Comparator.comparing(Message::getTimestamp).reversed();
+        //return Comparator.comparing(Message::getTimestamp);
     }
 }

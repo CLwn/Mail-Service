@@ -4,7 +4,11 @@ import Structure.Mailbox;
 import Structure.Message;
 
 import java.sql.Timestamp;
+import java.util.List;
+import java.util.Map;
+
 import static utilities.Predicates.*;
+import static utilities.Comparators.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -23,12 +27,15 @@ public class Main {
         /**
          * Send mails
          */
-        joshbox.sendMail(new Message(joshbox.getUsername(), salombox.getUsername(), "Welcome Artur",
+        joshbox.sendMail(new Message(joshbox.getUsername(), salombox.getUsername(), "Welcome",
                 "Welcome to this department", new Timestamp(System.currentTimeMillis())));
-        joshbox.sendMail(new Message(joshbox.getUsername(), davidbox.getUsername(), "Welcome David",
+        Thread.sleep(1000);
+        joshbox.sendMail(new Message(joshbox.getUsername(), davidbox.getUsername(), "Welcome",
                 "Welcome to this department", new Timestamp(System.currentTimeMillis())));
+        Thread.sleep(1000);
         salombox.sendMail(new Message(salombox.getUsername(), joshbox.getUsername(), "Urgent",
                 "Hi Josh, I need access into logs directory, thanks.", new Timestamp(System.currentTimeMillis())));
+        Thread.sleep(1000);
         salombox.sendMail(new Message(salombox.getUsername(), davidbox.getUsername(), "Teammates",
                 "Hi david, We're teammates", new Timestamp(System.currentTimeMillis())));
 
@@ -37,15 +44,17 @@ public class Main {
          */
         davidbox.updateMail(davidbox.getUsername());
 
-        System.out.println("-----------------------------------------------------");
+        System.out.println("---------------------------ORDER BY TIMESTAMP--------------------------");
         /**
-         * List messages
-         * i have to do this with get  mail sorted, point 4
+         * List messages by newer first
          */
-        //TODO
-        for (Message msg : davidbox.listMail()){
-            System.out.println(msg.getSubject());
-        }
+        davidbox.getMail(orderByTimestamp());
+
+        System.out.println("---------------------------ORDER BY USERNAME SENDER--------------------------");
+        /**
+         * List messages by username sender
+         */
+        davidbox.getMail(orderBySender());
 
         System.out.println("-----------------------FILTER BY SUBJECT------------------------------");
         /**
@@ -93,8 +102,19 @@ public class Main {
         for (Message message: mailSystem.filterAllMessage(filterSubjectSingleWord("urgent")))
             System.out.println(message.toString());
 
-        //ha de mostrar el sender que sigui menor de 2000 no sender o receiver
+
         System.out.println("-------------------------FILTER BY YEAR----------------------------");
+        /**
+         * filter messages where sender was born after 2000
+         */
         for(Message message: mailSystem.getMessageByYO(filterByAge(2000)))System.out.println(message.toString());
+
+
+        System.out.println("---------------------------FILTER BY YEAR BEFORE 2000--------------------------");
+        for (Message message: mailSystem.getMessageByYO(2000)) System.out.println(message.toString());
+
+        System.out.println("---------------------------GROUP MESSSAGES BY SUBJECT--------------------------");
+        Map<String, List<Message>> map = mailSystem.groupMessagePerSubject();
+        map.forEach((s, messages) -> System.out.println(messages.toString()));
     }
 }

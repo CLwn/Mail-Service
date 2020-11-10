@@ -1,8 +1,6 @@
 package Structure;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -58,11 +56,18 @@ public class MailSystem {
         System.out.println("average messages by user: "+average);
     }
 
-    public void groupMessagePerSubject(String name){
-        List<User> list = userList.stream().filter(user-> user.getUsername().contains(name)).collect(Collectors.toList());
-        User user = list.get(0);
-        user.getBox();
-        //TODO
+    public Map<String, List<Message>> groupMessagePerSubject() throws Exception {
+        List<Message> messages = getAllMessage();
+        List<Message> list;
+        Map<String, List<Message>> map = new HashMap<>();
+        for (Message message: messages){
+            if(map.containsKey(message.getSubject())) list= map.get(message.getSubject());
+            else list= new LinkedList<>();
+            list.add(message);
+            map.put(message.getSubject(), list);
+        }
+        return map;
+
     }
     public void countWords(String name){
         List<User> list = userList.stream().filter(user-> user.getUsername().contains(name)).collect(Collectors.toList());
@@ -76,6 +81,7 @@ public class MailSystem {
     }
     public List<Message> getMessageByYO(int year) throws Exception {
         List<User> users = userList.stream().filter(user-> user.getYearOfBirth()<year).collect(Collectors.toList());
+        for (User user: users) System.out.println(user.getUsername());
         List<Message> list = new LinkedList<>();
         for(User user: users){
             List<Message> total = mailStore.getMail(user.getUsername());

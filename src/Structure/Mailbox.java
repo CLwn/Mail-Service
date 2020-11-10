@@ -42,7 +42,6 @@ public class Mailbox{
 
     //filtramos por Sender PREDICATE
     public List<Message> filterMail(Predicate predicate){
-        //List<Message> list = box.stream().filter(predicate).forEach(p -> System.out.println(((Message) p).getSender()))
         List<Message> list = (List<Message>) box.stream().filter(predicate).collect(Collectors.toList());
         return list;
     }
