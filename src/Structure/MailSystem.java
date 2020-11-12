@@ -1,5 +1,6 @@
 package Structure;
 
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -36,7 +37,7 @@ public class MailSystem {
         return userList;
     }
 
-    //TODO
+
     public List<Message> filterAllMessage(Predicate predicate) throws Exception {
         List<Message> list = getAllMessage();
         return (List<Message>) list.stream().filter(predicate).collect(Collectors.toList());
@@ -69,19 +70,24 @@ public class MailSystem {
         return map;
 
     }
-    public void countWords(String name){
-        List<User> list = userList.stream().filter(user-> user.getUsername().contains(name)).collect(Collectors.toList());
-        User user = list.get(0);
+    public void countWords(String name) throws Exception {
+        List<User> list = userList.stream().filter(user-> user.getName().contains(name)).collect(Collectors.toList());
+        List<Message> allMessages = getAllMessage();
         int count = 0;
-        for (Message mesg: user.getBox().listMail()){
-            long words = Arrays.stream(mesg.getBody().split(" ")).count();
-            count += words;
+        long words;
+        for (User user: list){
+            for (Message message: allMessages){
+                if (message.getSender().equalsIgnoreCase(user.getUsername())){
+                    words = Arrays.stream(message.getBody().split(" ")).count();
+                    count += words;
+                }
+            }
         }
-        System.out.println(count);
+        System.out.println("this messages has "+count+" words");
     }
+
     public List<Message> getMessageByYO(int year) throws Exception {
         List<User> users = userList.stream().filter(user-> user.getYearOfBirth()<year).collect(Collectors.toList());
-        for (User user: users) System.out.println(user.getUsername());
         List<Message> list = new LinkedList<>();
         for(User user: users){
             List<Message> total = mailStore.getMail(user.getUsername());
@@ -106,5 +112,13 @@ public class MailSystem {
 
     public List<Mailbox> getMailboxList() {
         return mailboxList;
+    }
+
+    public void setMailStore(MailStore mailStore) {
+        this.mailStore = mailStore;
+    }
+
+    public MailStore getMailStore() {
+        return mailStore;
     }
 }

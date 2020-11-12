@@ -22,12 +22,7 @@ public class Test {
          * El timestamp al storeMemory funciona, pero al StoreFiles a medias i think
          */
         List<Message> list = antbox.listMail();
-        for (Message msg: list){
-            //System.out.println(msg.getSender());
-            //System.out.println(msg.getReceiver());
-            //System.out.println(msg.getSubject());
-            System.out.println(msg.getTimestamp());
-        }
+        for (Message msg: list) System.out.println(msg.toString());
 
         /**
          * listea bien

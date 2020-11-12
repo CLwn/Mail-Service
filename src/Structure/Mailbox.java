@@ -46,4 +46,7 @@ public class Mailbox{
         return list;
     }
 
+    public void setStore(MailStore store) {
+        this.store = store;
+    }
 }

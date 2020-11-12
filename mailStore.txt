@@ -1,0 +1,5 @@
+josh;david01;Welcome;Welcome to this department;2020-11-12 18:59:09.432;
+josh;david;Welcome;Welcome to this department;2020-11-12 18:59:10.433;
+david01;josh;Urgent;Hi Josh, I need access into logs directory, thanks.;2020-11-12 18:59:11.434;
+david01;david;Teammates;Hi david, We are teammates;2020-11-12 18:59:12.435;
+david;david01;Teammates;Yes, We gonna work together;2020-11-12 18:59:13.435;

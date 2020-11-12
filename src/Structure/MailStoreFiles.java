@@ -25,26 +25,25 @@ public class MailStoreFiles implements MailStore {
     }
 
     @Override
-    public List<Message> getMail(String username) throws FileNotFoundException, ParseException {//, ParseException { //obtenir tots els missatges de un user concret.
+    public List<Message> getMail(String username) throws IOException, ParseException {
         List<Message> list = new LinkedList<>();
         Scanner reader = new Scanner(file);
         reader.useDelimiter(";");
 
-        while (reader.hasNextLine()){
+        while(reader.hasNextLine()){
             String sender = reader.next();
             String receiver = reader.next();
-            if(receiver.equalsIgnoreCase(username)){
+            if(receiver.equalsIgnoreCase(username)) {
                 String subject = reader.next();
                 String body = reader.next();
                 String date = reader.next();
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
                 Date parsedDate = dateFormat.parse(date);
                 Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
-                reader.nextLine();
-                Message message = new Message(sender,receiver,body,subject,timestamp);
+                Message message = new Message(sender, receiver, subject, body, timestamp);
                 list.add(message);
-            }
-
+                reader.nextLine();
+            }else reader.nextLine();
         }
         return list;
     }
