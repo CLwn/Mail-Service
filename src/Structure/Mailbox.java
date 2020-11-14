@@ -49,4 +49,8 @@ public class Mailbox{
     public void setStore(MailStore store) {
         this.store = store;
     }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }
