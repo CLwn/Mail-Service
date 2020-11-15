@@ -1,0 +1,3 @@
+marc;joe;Buenas bro;como estas tio? espero que te vaya bien en la vida ;2020-11-15 17:59:40.294;
+joe;pepe;Bienvenido;Te damos la bienvenida a este mail;2020-11-15 18:24:13.772;
+marc;joe;hola;ieeee;2020-11-15 18:26:18.687;

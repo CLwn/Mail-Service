@@ -1,10 +1,11 @@
 import Structure.*;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.List;
 
 public class Test {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception, java.lang.Exception {
         MailSystem mailSystem = new MailSystem(new MailStoreFiles());
         Mailbox pepebox = mailSystem.createNewUser("pepe", "Pedro García", 1998);
         Mailbox antbox = mailSystem.createNewUser("ant", "Antonio Ramon", 1995);

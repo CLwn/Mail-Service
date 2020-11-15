@@ -1,5 +1,4 @@
 import Structure.*;
-
 import java.sql.Timestamp;
 
 import java.util.List;
@@ -7,7 +6,7 @@ import static utilities.Predicates.*;
 import static utilities.Comparators.*;
 
 public class Test2 {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws java.lang.Exception {
         /**
          * create user funciona bien
          */

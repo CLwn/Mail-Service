@@ -35,12 +35,12 @@ public class Mailbox{
         store.sendMail(message);
     }
 
-    //li hem de passar un mètode de ordenació per paràmetre STREAMS COMPARATOR
+
     public void getMail(Comparator comparator){
         box.stream().sorted(comparator).forEach(System.out::println);
     }
 
-    //filtramos por Sender PREDICATE
+
     public List<Message> filterMail(Predicate predicate){
         List<Message> list = (List<Message>) box.stream().filter(predicate).collect(Collectors.toList());
         return list;
@@ -53,4 +53,5 @@ public class Mailbox{
     public void setUsername(String username) {
         this.username = username;
     }
+
 }

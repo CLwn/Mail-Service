@@ -3,7 +3,9 @@ package utilities;
 import Structure.Message;
 import Structure.User;
 
+import javax.management.remote.JMXServerErrorException;
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.function.Predicate;
 
 public class Predicates {
@@ -27,4 +29,13 @@ public class Predicates {
     public static Predicate<User> filterByAge(int year){
         return  user -> user.getYearOfBirth()>year;
     }
+
+    public static Predicate<Message> filterWordBody(String word){
+        return message -> message.getBody().contains(word);
+    }
+
+    public static Predicate<Message> filterCountWords(int value){
+        return message -> Arrays.stream(message.getBody().split(" ")).count();
+    }
+
 }

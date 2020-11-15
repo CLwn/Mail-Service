@@ -8,7 +8,7 @@ import static utilities.Predicates.*;
 import static utilities.Comparators.*;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws java.lang.Exception {
         /**
          * Initialize mail system
          */
