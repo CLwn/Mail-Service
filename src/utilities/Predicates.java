@@ -22,20 +22,12 @@ public class Predicates {
         return message -> message.getTimestamp().equals(timestamp);
     }
 
-    public static Predicate<Message> filterSubjectSingleWord(String word){
-        return message -> message.getSubject().equalsIgnoreCase(word);
-    }
-
     public static Predicate<User> filterByAge(int year){
         return  user -> user.getYearOfBirth()>year;
     }
 
     public static Predicate<Message> filterWordBody(String word){
         return message -> message.getBody().contains(word);
-    }
-
-    public static Predicate<Message> filterCountWords(int value){
-        return message -> Arrays.stream(message.getBody().split(" ")).count();
     }
 
 }

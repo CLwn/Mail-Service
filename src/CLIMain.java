@@ -28,8 +28,12 @@ public class CLIMain {
             }else{
                 switch (dataEntry.get(0)){
                     case "send": sendMessage(dataEntry,mailbox);break;
-                    case "udpate": mailbox.updateMail(mailbox.getUsername());break;
-                    case "list": mailbox.getMail(orderByTimestamp());break;
+                    case "update":
+                        System.out.println("update done!");
+                        mailbox.updateMail(mailbox.getUsername());break;
+                    case "list":
+                        System.out.println("list done!");
+                        mailbox.getMail(orderByTimestamp());break;
                     case "sort": sortMessages(dataEntry, mailbox);
                     case "filter": filterMessages(dataEntry, mailbox, mailSystem);
                     default:
@@ -37,17 +41,16 @@ public class CLIMain {
                                 "-filter\n -logout\n -exit");break;
                 }
             }
-
-
-
             dataEntry.clear();
             String line = reader.nextLine();
             for (String word: line.split("-")){
                 dataEntry.add(word);
             }
-            if (dataEntry.get(0).equals("logout") && dataEntry.size()==1) mailbox=null;
+            if (dataEntry.get(0).equals("logout") && dataEntry.size()==1) {
+                mailbox=null;
+                System.out.println("LOGOUT");
+            }
             if (dataEntry.get(0).equals("exit") && dataEntry.size()==1) noExit= false;
-            System.out.println(noExit);
 
         }while(noExit);
     }
@@ -96,20 +99,56 @@ public class CLIMain {
     }
     //TODO en el caso de que tuvieran esa palabra en el subject y el body el mensaje se duplicaria pero lo miraré más adelante
     static void filterMessages(ArrayList<String> dataEntry, Mailbox mailbox, MailSystem mailSystem){
-
         switch (dataEntry.get(1)) {
             case "contains":
-                List<Message> subjList = mailbox.filterMail(filterSubjectSingleWord(dataEntry.get(1)));
-                List<Message> bodyList = mailbox.filterMail(filterWordBody(dataEntry.get(1)));
+                List<Message> subjList = mailbox.filterMail(filterBySubject(dataEntry.get(2)));
+                List<Message> bodyList = mailbox.filterMail(filterWordBody(dataEntry.get(2)));
                 subjList.addAll(bodyList);
                 for (Message message : subjList) System.out.println(message.toString());
                 break;
-            case "lessthan": mailbox.listMail().stream().filter().count()
+            case "lessthan":
+                try {
+                    int value = Integer.parseInt(dataEntry.get(2));
+                    for (Message message: mailbox.listMail()){
+                        if(Arrays.stream(message.getBody().split(" ")).count()<value) System.out.println(message.toString());
+                    }
+
+                }catch (NumberFormatException numberFormatException){
+                    numberFormatException.getMessage();
+                }
+
+                break;
+            default:
+                System.out.println("PARAMETERS: filter-contains/lessthan-word/value");
                 break;
         }
     }
 
-    static void filterAllMessages(ArrayList<String> dataEntry, MailSystem mailSystem){
+    static void filterAllMessages(ArrayList<String> dataEntry, MailSystem mailSystem) throws java.lang.Exception {
+
+
+            switch (dataEntry.get(1)) {
+                case "contains":
+                    List<Message> subjList= mailSystem.filterAllMessage(filterBySubject(dataEntry.get(2)));
+                    List<Message> bodyList= mailSystem.filterAllMessage(filterWordBody(dataEntry.get(2)));
+                    subjList.addAll(bodyList);
+                    for (Message message : subjList) System.out.println(message.toString());
+                    break;
+                case "lessthan":
+                    try {
+                        int value = Integer.parseInt(dataEntry.get(2));
+                        for (Message message: mailSystem.getAllMessage()){
+                            if(Arrays.stream(message.getBody().split(" ")).count()<value) System.out.println(message.toString());
+                        }
+                    }catch(NumberFormatException numberFormatException){
+                        numberFormatException.getMessage();
+                    }
+                    break;
+                default:
+                    System.out.println("PARAMETERS: filter-contains/lessthan-word/value");
+                    break;
+            }
+
 
     }
 

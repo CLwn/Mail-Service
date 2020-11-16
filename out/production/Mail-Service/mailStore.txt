@@ -1,3 +1,5 @@
 marc;joe;Buenas bro;como estas tio? espero que te vaya bien en la vida ;2020-11-15 17:59:40.294;
 joe;pepe;Bienvenido;Te damos la bienvenida a este mail;2020-11-15 18:24:13.772;
 marc;joe;hola;ieeee;2020-11-15 18:26:18.687;
+marc;joe;hola;hola com estas;2020-11-16 11:59:19.111;
+raul;joe;Buenas;Hola soy nuevo en el sector y queria preguntarte varias dudas porque no tengo ni idea de como va esto y bla bla bla bla bla son 20 ya creo;2020-11-16 12:13:23.285;
