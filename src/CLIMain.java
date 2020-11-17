@@ -23,7 +23,7 @@ public class CLIMain {
                     case "logas": mailbox = logAs(dataEntry, mailSystem);break;
                     case "filter": filterAllMessages(dataEntry, mailSystem);break;
                     default:
-                        System.out.println("commands: \n -createUser \n -logas \n -exit");;break;
+                        System.out.println("commands: \n -createUser \n -logas \n -filter");;break;
                 }
             }else{
                 switch (dataEntry.get(0)){
@@ -34,11 +34,11 @@ public class CLIMain {
                     case "list":
                         System.out.println("list done!");
                         mailbox.getMail(orderByTimestamp());break;
-                    case "sort": sortMessages(dataEntry, mailbox);
-                    case "filter": filterMessages(dataEntry, mailbox, mailSystem);
+                    case "sort": sortMessages(dataEntry, mailbox);break;
+                    case "filter": filterMessages(dataEntry, mailbox, mailSystem);break;
                     default:
                         System.out.println("commands:\n -send \n -update \n -list \n -sort \n " +
-                                "-filter\n -logout\n -exit");break;
+                                "-filter");break;
                 }
             }
             dataEntry.clear();
@@ -89,8 +89,8 @@ public class CLIMain {
     static void sortMessages(ArrayList<String> dataEntry, Mailbox mailbox){
         switch (dataEntry.get(1)){
             case "sender":  mailbox.getMail(orderBySender()); break;
-            case "subject": mailbox.getMail(orderBySender()); break;
-            case "time":  mailbox.getMail(orderBySender()); break;
+            case "subject": mailbox.getMail(orderBySubject()); break;
+            case "time":  mailbox.getMail(orderByTimestamp()); break;
             default: System.out.println("Use sender, subject or time to order messages"); break;
         }
 
@@ -99,6 +99,7 @@ public class CLIMain {
     }
     //TODO en el caso de que tuvieran esa palabra en el subject y el body el mensaje se duplicaria pero lo miraré más adelante
     static void filterMessages(ArrayList<String> dataEntry, Mailbox mailbox, MailSystem mailSystem){
+
         switch (dataEntry.get(1)) {
             case "contains":
                 List<Message> subjList = mailbox.filterMail(filterBySubject(dataEntry.get(2)));
@@ -116,7 +117,6 @@ public class CLIMain {
                 }catch (NumberFormatException numberFormatException){
                     numberFormatException.getMessage();
                 }
-
                 break;
             default:
                 System.out.println("PARAMETERS: filter-contains/lessthan-word/value");

@@ -18,6 +18,9 @@ public class Predicates {
         return  message -> message.getSubject().contains(subject);
     }
 
+    public static Predicate<Message>filterSubjectSingleWord(String word){
+        return message -> message.getSubject().equalsIgnoreCase(word);
+    }
     public static Predicate<Message> filterByTimestamp(Timestamp timestamp){
         return message -> message.getTimestamp().equals(timestamp);
     }
