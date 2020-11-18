@@ -1,12 +1,11 @@
 package Structure;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class MailSystem {
+public class MailSystem{
     private List<User> userList = new LinkedList<>();
     private List<Mailbox> mailboxList = new LinkedList<>();
     private MailStore mailStore;
@@ -121,4 +120,5 @@ public class MailSystem {
     public MailStore getMailStore() {
         return mailStore;
     }
+
 }
