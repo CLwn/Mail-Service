@@ -43,6 +43,8 @@ public class Main {
          * Update list
          */
         davidbox.updateMail(davidbox.getUsername());
+        joshbox.updateMail(joshbox.getUsername());
+        david01box.updateMail(david01box.getUsername());
 
         System.out.println("---------------------------ORDER BY TIMESTAMP--------------------------");
         /**
@@ -153,6 +155,8 @@ public class Main {
          * Update list
          */
         davidbox.updateMail(davidbox.getUsername());
+        joshbox.updateMail(joshbox.getUsername());
+        david01box.updateMail(david01box.getUsername());
 
         System.out.println("---------------------------ORDER BY TIMESTAMP--------------------------");
         /**

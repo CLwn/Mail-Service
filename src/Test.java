@@ -4,8 +4,10 @@ import Structure.*;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Test {
     public static void main(String[] args) throws Exception, java.lang.Exception {
@@ -30,11 +32,17 @@ public class Test {
         for (Message message: pepebox.listMail()) System.out.println(message.toString());
 
         System.out.println("------------------------------SPAM------------------------------");
-        for (Message message: pepebox.getSpam()) System.out.println(message.toString());
-
+        /**for (Message message: pepebox.getSpam()) System.out.println(message.toString());
+        List<String> spamUsers = new LinkedList<>();
         for (Mailbox mailbox: mailSystem.getMailboxList()){
-            if (!mailbox.getSpam().isEmpty()) System.out.println(mailbox.getUsername());
+            for (Message message: mailbox.getSpam()){
+                if (!spamUsers.contains(message.getSender())) spamUsers.add(message.getSender());
+            }
         }
+        for (String spammers: spamUsers) System.out.println("this guy's spammer: "+spammers);
+
+*/
+        mailSystem.getSpammers();
         /**
          * El timestamp al storeMemory funciona, pero al StoreFiles a medias i think
          *

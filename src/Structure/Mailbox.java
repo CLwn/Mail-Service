@@ -77,9 +77,7 @@ public class Mailbox implements Observable {
     public void notifyAllObservers() {
         List<Message> partial;
         for (Observer observer: filterList){
-            System.out.println("hola");
             partial = observer.update(box);
-            for (Message message: partial) System.out.println(message.toString());
             spam = Stream.concat(spam.stream(),partial.stream()).collect(Collectors.toList());
         }
         for (Message message: spam) box.remove(message);

@@ -121,4 +121,14 @@ public class MailSystem{
         return mailStore;
     }
 
+    public void getSpammers(){
+        List<String> spammers = new LinkedList<>();
+        for (Mailbox mailbox: mailboxList){
+            mailbox.getSpam().stream().forEach(message ->{if (!spammers.contains(message.getSender()))spammers.add(message.getSender());});
+        }
+        System.out.println("----SPAMMERS------");
+        spammers.forEach(System.out::println);
+        System.out.println("------------------");
+    }
+
 }
