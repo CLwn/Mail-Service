@@ -5,7 +5,9 @@ import ObserverPattern.Observer;
 import ObserverPattern.SpamUserFilter;
 import ObserverPattern.TooLongFilter;
 
+import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -43,7 +45,7 @@ public class Mailbox implements Observable {
     }
 
     // envia el missatge al mailstore
-    public void sendMail(Message message) throws IOException {
+    public void sendMail(Message message) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException {
         store.sendMail(message);
     }
 

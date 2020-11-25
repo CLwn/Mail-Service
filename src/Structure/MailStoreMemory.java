@@ -1,8 +1,5 @@
 package Structure;
 
-import Structure.MailStore;
-import Structure.Message;
-
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;

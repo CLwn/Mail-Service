@@ -1,12 +1,11 @@
+package Test;
+
 import ObserverPattern.SpamUserFilter;
 import ObserverPattern.TooLongFilter;
 import Structure.*;
-
-import java.awt.font.FontRenderContext;
-import java.io.IOException;
 import java.sql.Timestamp;
 
-public class MainPart2 {
+public class TestFiltersMain {
     public static void main(String[] args) throws java.lang.Exception {
         /**
          * Initialize mail system

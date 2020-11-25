@@ -1,12 +1,17 @@
+package Test;
+
 import Structure.*;
+
+import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
 import java.util.*;
 import static utilities.Comparators.*;
 import static utilities.Predicates.*;
 
-public class CLIMain {
-    public static void main(String[] args) throws Exception, java.lang.Exception {
+public class TestCLIMain {
+    public static void main(String[] args) throws java.lang.Exception {
         boolean noExit = true;
         Scanner reader = new Scanner(System.in);
         MailSystem mailSystem = new MailSystem(new MailStoreFiles());
@@ -81,7 +86,7 @@ public class CLIMain {
         return null;
     }
 
-    static void sendMessage(ArrayList<String> dataEntry, Mailbox mailbox) throws IOException {
+    static void sendMessage(ArrayList<String> dataEntry, Mailbox mailbox) throws IOException, NoSuchPaddingException, NoSuchAlgorithmException {
         mailbox.sendMail(new Message(mailbox.getUsername(), dataEntry.get(1), dataEntry.get(2)
                 ,dataEntry.get(3), new Timestamp(System.currentTimeMillis())));
     }
