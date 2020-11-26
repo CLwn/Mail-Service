@@ -98,13 +98,10 @@ public class TestCLIMain {
             case "time":  mailbox.getMail(orderByTimestamp()); break;
             default: System.out.println("Use sender, subject or time to order messages"); break;
         }
-
-
-        //
     }
+
     //TODO en el caso de que tuvieran esa palabra en el subject y el body el mensaje se duplicaria pero lo miraré más adelante
     static void filterMessages(ArrayList<String> dataEntry, Mailbox mailbox, MailSystem mailSystem){
-
         switch (dataEntry.get(1)) {
             case "contains":
                 List<Message> subjList = mailbox.filterMail(filterBySubject(dataEntry.get(2)));
@@ -130,8 +127,6 @@ public class TestCLIMain {
     }
 
     static void filterAllMessages(ArrayList<String> dataEntry, MailSystem mailSystem) throws java.lang.Exception {
-
-
             switch (dataEntry.get(1)) {
                 case "contains":
                     List<Message> subjList= mailSystem.filterAllMessage(filterBySubject(dataEntry.get(2)));
@@ -153,9 +148,6 @@ public class TestCLIMain {
                     System.out.println("PARAMETERS: filter-contains/lessthan-word/value");
                     break;
             }
-
-
     }
-
 }
 
