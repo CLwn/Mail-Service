@@ -8,28 +8,20 @@ import java.sql.Timestamp;
 
 public class TestFiltersMain {
     public static void main(String[] args) throws java.lang.Exception {
-        /**
-         * Initialize mail system
-         */
+
+        //Initialize mail system
         MailSystem mailSystem = new MailSystem();
 
-        /**
-         * Create new type of mailStore
-         */
-
+        //Create new type of mailStore
         mailSystem.createMailStore(new MailStoreMemoryFactory());
 
-        /**
-         * Create users
-         */
+        //Create users
         Mailbox joshbox = mailSystem.createNewUser("josh", "Josh", 1998);
         Mailbox david01box = mailSystem.createNewUser("david01", "David", 2001);
         Mailbox davidbox = mailSystem.createNewUser("david", "David", 1992);
         Mailbox spammerbox = mailSystem.createNewUser("spammer", "Mr.spam", 1988);
 
-        /**
-         * Send mails
-         */
+        //Send mails
         joshbox.sendMail(new Message(joshbox.getUsername(), david01box.getUsername(), "Welcome",
                 "Welcome to this department", new Timestamp(System.currentTimeMillis())));
         joshbox.sendMail(new Message(joshbox.getUsername(), davidbox.getUsername(), "Welcome",
@@ -54,24 +46,18 @@ public class TestFiltersMain {
                 "LINK!", new Timestamp(System.currentTimeMillis())));
 
 
-        /**
-         * Apply filters
-         */
+        //Apply filters
         joshbox.attach(new TooLongFilter());
         joshbox.attach(new SpamUserFilter());
         david01box.attach(new SpamUserFilter());
         davidbox.attach(new SpamUserFilter());
 
-        /**
-         * Update messages list.
-         */
+        //Update messages list
         joshbox.updateMail(joshbox.getUsername());
         david01box.updateMail(david01box.getUsername());
         davidbox.updateMail(davidbox.getUsername());
 
-        /**
-         * List mails
-         */
+        //List mails
         System.out.println("------------MAIL LIST---------------");
         System.out.println("------------josh's mail---------------");
         for (Message message: joshbox.listMail()) System.out.println(message.toString());
@@ -80,9 +66,7 @@ public class TestFiltersMain {
         System.out.println("------------david01's mail---------------");
         for (Message message: david01box.listMail()) System.out.println(message.toString());
 
-        /**
-         * List spam
-         */
+        //List spam
         System.out.println("------------SPAM LIST---------------");
         System.out.println("------------josh's mail---------------");
         for (Message message: joshbox.getSpam()) System.out.println(message.toString());
@@ -91,26 +75,20 @@ public class TestFiltersMain {
         System.out.println("------------david01's mail---------------");
         for (Message message: david01box.getSpam()) System.out.println(message.toString());
 
-        /**
-         * list spammers
-         */
+        //list spammers
         mailSystem.getSpammers();
 
 
         System.out.println("---------------------------CHANGE IMPLEMENTATION OF MAIL SYSTEM--------------------------");
         mailSystem.setMailStore(new MailStoreFiles());
 
-        /**
-         * Move users to new Store
-         */
+        //Move users to new Store
         joshbox.setStore(mailSystem.getMailStore());
         david01box.setStore(mailSystem.getMailStore());
         davidbox.setStore(mailSystem.getMailStore());
         spammerbox.setStore(mailSystem.getMailStore());
 
-        /**
-         * Send mails
-         */
+        //Send mails
         joshbox.sendMail(new Message(joshbox.getUsername(), david01box.getUsername(), "Welcome",
                 "Welcome to this department", new Timestamp(System.currentTimeMillis())));
         joshbox.sendMail(new Message(joshbox.getUsername(), davidbox.getUsername(), "Welcome",
@@ -135,24 +113,18 @@ public class TestFiltersMain {
                 "LINK!", new Timestamp(System.currentTimeMillis())));
 
 
-        /**
-         * Apply filters
-         */
+        //Apply filters
         joshbox.attach(new TooLongFilter());
         joshbox.attach(new SpamUserFilter());
         david01box.attach(new SpamUserFilter());
         davidbox.attach(new SpamUserFilter());
 
-        /**
-         * Update messages list.
-         */
+        //Update messages list
         joshbox.updateMail(joshbox.getUsername());
         david01box.updateMail(david01box.getUsername());
         davidbox.updateMail(davidbox.getUsername());
 
-        /**
-         * List mails
-         */
+        //List mails
         System.out.println("------------MAIL LIST---------------");
         System.out.println("------------josh's mail---------------");
         for (Message message: joshbox.listMail()) System.out.println(message.toString());
@@ -161,9 +133,7 @@ public class TestFiltersMain {
         System.out.println("------------david01's mail---------------");
         for (Message message: david01box.listMail()) System.out.println(message.toString());
 
-        /**
-         * List spam
-         */
+        //List spam
         System.out.println("------------SPAM LIST---------------");
         System.out.println("------------josh's mail---------------");
         for (Message message: joshbox.getSpam()) System.out.println(message.toString());
@@ -172,9 +142,7 @@ public class TestFiltersMain {
         System.out.println("------------david01's mail---------------");
         for (Message message: david01box.getSpam()) System.out.println(message.toString());
 
-        /**
-         * list spammers
-         */
+        //list spammers
         mailSystem.getSpammers();
 
     }

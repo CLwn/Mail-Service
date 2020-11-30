@@ -1,10 +1,6 @@
 package Test;
 
-import DecoratorPattern.CipherCode;
-import DecoratorPattern.ReverseCode;
 import FactoryPattern.MailStoreFilesFactory;
-import FactoryPattern.MailStoreMemoryFactory;
-import Structure.MailStoreFiles;
 import Structure.MailSystem;
 import Structure.Mailbox;
 import Structure.Message;
@@ -12,27 +8,20 @@ import java.sql.Timestamp;
 
 public class TestBothStrategiesMain {
     public static void main(String[] args) throws Exception {
-        /**
-         * Initialize mail system
-         */
+
+        //Initialize mail system
         MailSystem mailSystem = new MailSystem();
 
-        /**
-         * Create new type of mailStore
-         */
+        //Create new type of mailStore
         mailSystem.createMailStore(new MailStoreFilesFactory());
 
-        /**
-         * Create users
-         */
+        //Create users
         Mailbox joshbox = mailSystem.createNewUser("josh", "Josh", 1998);
         Mailbox david01box = mailSystem.createNewUser("david01", "David", 2001);
         Mailbox davidbox = mailSystem.createNewUser("david", "David", 1992);
         Mailbox spammerbox = mailSystem.createNewUser("spammer", "Mr.spam", 1988);
 
-        /**
-         * Send mails
-         */
+        //Send mails
         joshbox.sendMail(new Message(joshbox.getUsername(), david01box.getUsername(), "Welcome",
                 "Welcome to this department", new Timestamp(System.currentTimeMillis())));
         joshbox.sendMail(new Message(joshbox.getUsername(), davidbox.getUsername(), "Welcome",
@@ -57,16 +46,12 @@ public class TestBothStrategiesMain {
                 "LINK!", new Timestamp(System.currentTimeMillis())));
 
 
-        /**
-         * Update messages list.
-         */
+        //Update messages list
         joshbox.updateMail(joshbox.getUsername());
         david01box.updateMail(david01box.getUsername());
         davidbox.updateMail(davidbox.getUsername());
 
-        /**
-         * List mails
-         */
+        //List mails
         System.out.println("------------MAIL LIST---------------");
         System.out.println("------------josh's mail---------------");
         for (Message message: joshbox.listMail()) System.out.println(message.toString());

@@ -19,11 +19,22 @@ public class CipherCode implements MailStore, StrategyCipher {
     private String key = "IWantToPassTAP12";
 
 
+    /**
+     * Constructor of CipherCode
+     * @param mailStore
+     */
     public CipherCode(MailStore mailStore) {
         this.mailStore = mailStore;
     }
 
 
+    /**
+     * Method to send a message
+     * @param message
+     * @throws NoSuchPaddingException
+     * @throws NoSuchAlgorithmException
+     * @throws IOException
+     */
     @Override
     public void sendMail(Message message) throws NoSuchPaddingException, NoSuchAlgorithmException, IOException {
         String encryptData = encrypt(message.getBody());
@@ -33,6 +44,12 @@ public class CipherCode implements MailStore, StrategyCipher {
 
     }
 
+    /**
+     * Method to get the list of messages from a username
+     * @param username
+     * @return a list of messages
+     * @throws Exception
+     */
     @Override
     public List<Message> getMail(String username) throws Exception {
         List<Message> list = mailStore.getMail(username);
@@ -42,6 +59,11 @@ public class CipherCode implements MailStore, StrategyCipher {
         return list;
     }
 
+    /**
+     * Method to encrypt the message's body
+     * @param body
+     * @return a encrypted message
+     */
     public String encrypt(String body) {
         byte[] encrypted = new byte[0];
         try{
@@ -64,6 +86,11 @@ public class CipherCode implements MailStore, StrategyCipher {
         return Base64.getEncoder().encodeToString(encrypted);
     }
 
+    /**
+     * Method to decrypt a encrypted message's body
+     * @param encryptData
+     * @return a decrypted message
+     */
     public String decrypt(String encryptData){
         byte[] encrypted = Base64.getDecoder().decode(encryptData.getBytes());
         String decrypted = null;

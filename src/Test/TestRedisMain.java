@@ -1,9 +1,6 @@
 package Test;
 
-import FactoryPattern.MailStoreMemoryFactory;
 import FactoryPattern.RedisMailStoreFactory;
-import Part3.Redis;
-import Part3.RedisMailStore;
 import Structure.MailSystem;
 import Structure.Mailbox;
 import Structure.Message;
@@ -18,27 +15,19 @@ import static utilities.Predicates.filterByAge;
 
 public class TestRedisMain {
     public static void main(String[] args) throws Exception {
-        /**
-         * Initialize mail system
-         */
+
+        //Initialize mail system
         MailSystem mailSystem = new MailSystem();
 
-        /**
-         * Create new type of mailStore
-         */
-
+        //Create new type of mailStore
         mailSystem.createMailStore(new RedisMailStoreFactory());
 
-        /**
-         * Create users
-         */
+        //Create users
         Mailbox joshbox = mailSystem.createNewUser("josh", "Josh", 1998);
         Mailbox david01box = mailSystem.createNewUser("david01", "David", 2001);
         Mailbox davidbox = mailSystem.createNewUser("david", "David", 1992);
 
-        /**
-         * Send mails
-         */
+        //Send mails
         joshbox.sendMail(new Message(joshbox.getUsername(), david01box.getUsername(), "Welcome",
                 "Welcome to this department", new Timestamp(System.currentTimeMillis())));
         Thread.sleep(1000);
@@ -54,76 +43,54 @@ public class TestRedisMain {
         davidbox.sendMail(new Message(davidbox.getUsername(), david01box.getUsername(), "Teammates",
                 "Yes, We gonna work together", new Timestamp(System.currentTimeMillis())));
 
-        /**
-         * Update list
-         */
+        //Update list
         davidbox.updateMail(davidbox.getUsername());
         joshbox.updateMail(joshbox.getUsername());
         david01box.updateMail(david01box.getUsername());
 
         System.out.println("---------------------------ORDER BY TIMESTAMP--------------------------");
-        /**
-         * List messages by newer first
-         */
+        //List messages by newer first
         davidbox.getMail(orderByTimestamp());
 
         System.out.println("---------------------------ORDER BY USERNAME SENDER--------------------------");
-        /**
-         * List messages by username sender
-         */
+        //List messages by username sender
         davidbox.getMail(orderBySender());
 
         System.out.println("-----------------------FILTER BY SUBJECT------------------------------");
-        /**
-         * filter the messages by subject
-         */
+        //filter the messages by subject
         for (Message message: davidbox.filterMail(filterBySubject("Welcome"))){
             System.out.println(message.toString());
         }
 
         System.out.println("-----------------------FILTER BY SENDER------------------------------");
-
-        /**
-         * filter the messages by sender
-         */
+        //filter the messages by sender
         for (Message message: davidbox.filterMail(filterBySender(david01box.getUsername()))){
             System.out.println(message.toString());
         }
 
         System.out.println("-------------------------All MESSAGES----------------------------");
-
-        /**
-         * retrieve all messages with mail System
-         */
+        //retrieve all messages with mail System
         for (Message message: mailSystem.getAllMessage()){
             System.out.println(message.toString());
         }
 
         System.out.println("-------------------------COUNT MESSAGES----------------------------");
-        /**
-         * Count messages in the system
-         */
+        //Count messages in the system
         mailSystem.countMessages();
 
 
         System.out.println("-------------------------AVERAGE MESSAGES PER USER----------------------------");
-        /**
-         * Average messages per user
-         */
+        //Average messages per user
         mailSystem.averageMessagesPerUser();
 
         System.out.println("-------------------------FILTER BY SINGLE WORD----------------------------");
-        /**
-         * Filter by single word
-         */
+        //Filter by single word
         for (Message message: mailSystem.filterAllMessage(filterSubjectSingleWord("urgent")))
             System.out.println(message.toString());
 
 
         System.out.println("-------------------------FILTER BY YEAR----------------------------");
-        /**
-         * filter messages where sender was born after 2000
-         */
+        //filter messages where sender was born after 2000
         for(Message message: mailSystem.getMessageByYO(filterByAge(2000)))System.out.println(message.toString());
 
 
