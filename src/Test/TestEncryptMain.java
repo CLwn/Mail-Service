@@ -1,6 +1,8 @@
 package Test;
 
 import DecoratorPattern.CipherCode;
+import FactoryPattern.MailStoreMemoryFactory;
+import FactoryPattern.MailStoreOnlyCipherFactory;
 import Structure.*;
 import java.sql.Timestamp;
 
@@ -10,7 +12,13 @@ public class TestEncryptMain {
         /**
          * Initialize mail system
          */
-        MailSystem mailSystem = new MailSystem(new CipherCode(new MailStoreFiles()));
+        MailSystem mailSystem = new MailSystem();
+
+        /**
+         * Create new type of mailStore
+         */
+        mailSystem.createMailStore(new MailStoreOnlyCipherFactory());
+
         /**
          * Create users
          */

@@ -1,5 +1,7 @@
 package Test;
 
+import FactoryPattern.MailStoreMemoryFactory;
+import FactoryPattern.RedisMailStoreFactory;
 import Part3.Redis;
 import Part3.RedisMailStore;
 import Structure.MailSystem;
@@ -19,7 +21,13 @@ public class TestRedisMain {
         /**
          * Initialize mail system
          */
-        MailSystem mailSystem = new MailSystem(new RedisMailStore(new Redis()));
+        MailSystem mailSystem = new MailSystem();
+
+        /**
+         * Create new type of mailStore
+         */
+
+        mailSystem.createMailStore(new RedisMailStoreFactory());
 
         /**
          * Create users

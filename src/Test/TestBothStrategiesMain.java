@@ -2,6 +2,8 @@ package Test;
 
 import DecoratorPattern.CipherCode;
 import DecoratorPattern.ReverseCode;
+import FactoryPattern.MailStoreFilesFactory;
+import FactoryPattern.MailStoreMemoryFactory;
 import Structure.MailStoreFiles;
 import Structure.MailSystem;
 import Structure.Mailbox;
@@ -13,7 +15,13 @@ public class TestBothStrategiesMain {
         /**
          * Initialize mail system
          */
-        MailSystem mailSystem = new MailSystem(new ReverseCode(new CipherCode(new MailStoreFiles())));
+        MailSystem mailSystem = new MailSystem();
+
+        /**
+         * Create new type of mailStore
+         */
+        mailSystem.createMailStore(new MailStoreFilesFactory());
+
         /**
          * Create users
          */

@@ -12,6 +12,15 @@ import java.util.List;
 
 public class Redis {
     private Jedis jedis = new Jedis("localhost");
+    private static Redis instance;
+
+    private Redis() {
+    }
+
+    public static Redis getInstance(){
+        if (instance == null) instance = new Redis();
+        return instance;
+    }
 
     public void putData(Message message){
 

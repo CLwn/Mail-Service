@@ -1,5 +1,6 @@
 package Test;
 
+import FactoryPattern.MailStoreMemoryFactory;
 import ObserverPattern.SpamUserFilter;
 import ObserverPattern.TooLongFilter;
 import Structure.*;
@@ -10,7 +11,13 @@ public class TestFiltersMain {
         /**
          * Initialize mail system
          */
-        MailSystem mailSystem = new MailSystem(new MailStoreMemory());
+        MailSystem mailSystem = new MailSystem();
+
+        /**
+         * Create new type of mailStore
+         */
+
+        mailSystem.createMailStore(new MailStoreMemoryFactory());
 
         /**
          * Create users

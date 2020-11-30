@@ -1,5 +1,6 @@
 package Test;
 
+import FactoryPattern.MailStoreFilesFactory;
 import Structure.*;
 
 import javax.crypto.NoSuchPaddingException;
@@ -14,7 +15,8 @@ public class TestCLIMain {
     public static void main(String[] args) throws java.lang.Exception {
         boolean noExit = true;
         Scanner reader = new Scanner(System.in);
-        MailSystem mailSystem = new MailSystem(new MailStoreFiles());
+        MailSystem mailSystem = new MailSystem();
+        mailSystem.createMailStore(new MailStoreFilesFactory());
 
         ArrayList<String> dataEntry = new ArrayList();
         Mailbox mailbox = null;

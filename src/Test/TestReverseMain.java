@@ -1,6 +1,8 @@
 package Test;
 
 import DecoratorPattern.ReverseCode;
+import FactoryPattern.MailStoreMemoryFactory;
+import FactoryPattern.MailStoreOnlyReverseFactory;
 import Structure.MailStoreFiles;
 import Structure.MailSystem;
 import Structure.Mailbox;
@@ -12,7 +14,13 @@ public class TestReverseMain {
         /**
          * Initialize mail system
          */
-        MailSystem mailSystem = new MailSystem(new ReverseCode(new MailStoreFiles()));
+        MailSystem mailSystem = new MailSystem();
+
+        /**
+         * Create new type of mailStore
+         */
+        mailSystem.createMailStore(new MailStoreOnlyReverseFactory());
+
         /**
          * Create users
          */

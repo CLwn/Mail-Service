@@ -1,5 +1,7 @@
 package Structure;
 
+import FactoryPattern.MailStoreFactory;
+
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -10,9 +12,7 @@ public class MailSystem{
     private List<Mailbox> mailboxList = new LinkedList<>();
     private MailStore mailStore;
 
-    public MailSystem(MailStore mailStore) {
-        this.mailStore = mailStore;
-    }
+
 
     public Mailbox createNewUser(String username, String name, int yOfBird){
         Mailbox mailbox = new Mailbox(mailStore, username);
@@ -129,6 +129,10 @@ public class MailSystem{
         System.out.println("----SPAMMERS------");
         spammers.forEach(System.out::println);
         System.out.println("------------------");
+    }
+
+    public void createMailStore(MailStoreFactory factory){
+        mailStore = factory.createMailStore();
     }
 
 }
