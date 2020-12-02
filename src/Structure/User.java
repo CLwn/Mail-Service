@@ -1,12 +1,22 @@
 package Structure;
 
-import Structure.Mailbox;
-
+/**
+ * Class User
+ * @author Marc García
+ * @version 1.0
+ */
 public class User {
     private String username, name;
     private int yearOfBirth;
     private Mailbox box;
 
+    /**
+     * Constructor with 4 parameters
+     * @param username
+     * @param name
+     * @param yearOfBirth
+     * @param box
+     */
     public User(String username, String name, int yearOfBirth, Mailbox box) {
         this.username = username;
         this.name = name;
@@ -14,35 +24,43 @@ public class User {
         this.box = box;
     }
 
+    /**
+     * Method to get a mail box
+     * @return mailbox
+     */
     public Mailbox getBox() {
         return box;
     }
 
-    public void setBox(Mailbox box) {
-        this.box = box;
-    }
-
+    /**
+     * Method to get username
+     * @return username
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * Method to modify usernames
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     * Method to get a name
+     * @return name
+     */
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    /**
+     * Method to get a year of birth
+     * @return year
+     */
     public int getYearOfBirth() {
         return yearOfBirth;
-    }
-
-    public void setYearOfBirth(int yearOfBirth) {
-        this.yearOfBirth = yearOfBirth;
     }
 }

@@ -3,7 +3,6 @@ package DecoratorPattern;
 import StrategyPattern.StrategyCipher;
 import Structure.MailStore;
 import Structure.Message;
-
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -14,13 +13,18 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.List;
 
+/**
+ * Class CipherCode
+ * @author Marc García
+ * @version 1.0
+ */
 public class CipherCode implements MailStore, StrategyCipher {
     private MailStore mailStore;
     private String key = "IWantToPassTAP12";
 
 
     /**
-     * Constructor of CipherCode
+     * Constructor of CipherCode with 1 parameter
      * @param mailStore
      */
     public CipherCode(MailStore mailStore) {

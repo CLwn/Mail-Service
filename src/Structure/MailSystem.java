@@ -7,13 +7,24 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Class MailSystem
+ * @author Marc García
+ * @version 1.0
+ */
 public class MailSystem{
     private List<User> userList = new LinkedList<>();
     private List<Mailbox> mailboxList = new LinkedList<>();
     private MailStore mailStore;
 
 
-
+    /**
+     * Method to create new user and save it.
+     * @param username
+     * @param name
+     * @param yOfBird
+     * @return mailbox
+     */
     public Mailbox createNewUser(String username, String name, int yOfBird){
         Mailbox mailbox = new Mailbox(mailStore, username);
         User user = new User(username, name, yOfBird, mailbox);
@@ -22,6 +33,11 @@ public class MailSystem{
         return mailbox;
     }
 
+    /**
+     * Method to get all messages
+     * @return messages list
+     * @throws Exception
+     */
     public List<Message> getAllMessage() throws Exception{
         List<Message> total;
         List<Message> list = new LinkedList<>();
@@ -32,23 +48,39 @@ public class MailSystem{
         return list;
     }
 
+    /**
+     * Method to get all users
+     * @return users list
+     */
     public List<User> getAllUsers(){
         return userList;
     }
 
 
+    /**
+     * Method to get all messages filtered by one condition
+     * @param predicate
+     * @return messages list
+     * @throws Exception
+     */
     public List<Message> filterAllMessage(Predicate predicate) throws Exception {
         List<Message> list = getAllMessage();
         return (List<Message>) list.stream().filter(predicate).collect(Collectors.toList());
     }
 
-    //Queries dintre de metodes que anirem fent
+    /**
+     * Method to get a number of messages
+     * @throws Exception
+     */
     public void countMessages() throws Exception {
         long msg = getAllMessage().stream().count();
         System.out.println("there are "+msg+" messages.");
-
     }
 
+    /**
+     * Method to get the average number of messages per user
+     * @throws Exception
+     */
     public void averageMessagesPerUser() throws Exception {
         long msg = getAllMessage().stream().count();
         double users = getAllUsers().stream().count();
@@ -56,6 +88,11 @@ public class MailSystem{
         System.out.println("average messages by user: "+average);
     }
 
+    /**
+     * Method to get messages in groups
+     * @return
+     * @throws Exception
+     */
     public Map<String, List<Message>> groupMessagePerSubject() throws Exception {
         List<Message> messages = getAllMessage();
         List<Message> list;
@@ -69,6 +106,12 @@ public class MailSystem{
         return map;
 
     }
+
+    /**
+     * Method to get a number of words of all messages from users with a particular name
+     * @param name
+     * @throws Exception
+     */
     public void countWords(String name) throws Exception {
         List<User> list = userList.stream().filter(user-> user.getName().contains(name)).collect(Collectors.toList());
         List<Message> allMessages = getAllMessage();
@@ -85,6 +128,12 @@ public class MailSystem{
         System.out.println("this messages has "+count+" words");
     }
 
+    /**
+     * Method to get messages to users born before a certain year
+     * @param year
+     * @return
+     * @throws Exception
+     */
     public List<Message> getMessageByYO(int year) throws Exception {
         List<User> users = userList.stream().filter(user-> user.getYearOfBirth()<year).collect(Collectors.toList());
         List<Message> list = new LinkedList<>();
@@ -109,18 +158,25 @@ public class MailSystem{
     }
 
 
-    public List<Mailbox> getMailboxList() {
-        return mailboxList;
-    }
-
+    /**
+     * Method to modify mailstore
+     * @param mailStore
+     */
     public void setMailStore(MailStore mailStore) {
         this.mailStore = mailStore;
     }
 
+    /**
+     * Method to get mailstore
+     * @return mailstore
+     */
     public MailStore getMailStore() {
         return mailStore;
     }
 
+    /**
+     * Method to get a spammers list.
+     */
     public void getSpammers(){
         List<String> spammers = new LinkedList<>();
         for (Mailbox mailbox: mailboxList){
@@ -131,6 +187,10 @@ public class MailSystem{
         System.out.println("------------------");
     }
 
+    /**
+     * Method to create or modify a mail store
+     * @param factory
+     */
     public void createMailStore(MailStoreFactory factory){
         mailStore = factory.createMailStore();
     }

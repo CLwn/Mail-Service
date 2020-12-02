@@ -3,25 +3,29 @@ package DecoratorPattern;
 import StrategyPattern.StrategyCipher;
 import Structure.MailStore;
 import Structure.Message;
-
 import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+/**
+ * Class ReverseCode
+ * @author Marc García
+ * @version 1.0
+ */
 public class ReverseCode implements MailStore, StrategyCipher {
     private MailStore mailStore;
 
     /**
-     * Constructor of ReverseCode
-     * @param mailStore
+     * Constructor of ReverseCode with 1 parameter
+     * @param mailStore type of Store
      */
     public ReverseCode(MailStore mailStore) {
         this.mailStore = mailStore;
     }
 
     /**
-     * Method to get the list of messages from a username
+     * Method to send a message
      * @param message
      * @throws IOException
      * @throws NoSuchPaddingException
@@ -49,7 +53,7 @@ public class ReverseCode implements MailStore, StrategyCipher {
 
     /**
      * Method to encrypt the message's body
-     * @param body
+     * @param body message's content
      * @return a encrypted message
      */
     @Override
@@ -61,7 +65,7 @@ public class ReverseCode implements MailStore, StrategyCipher {
 
     /**
      * Method to decrypt a encrypted message's body
-     * @param encryptData
+     * @param encryptData message's content encrypted
      * @return a decrypted message
      */
     @Override

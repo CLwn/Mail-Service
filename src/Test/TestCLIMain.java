@@ -42,7 +42,7 @@ public class TestCLIMain {
                         System.out.println("list done!");
                         mailbox.getMail(orderByTimestamp());break;
                     case "sort": sortMessages(dataEntry, mailbox);break;
-                    case "filter": filterMessages(dataEntry, mailbox, mailSystem);break;
+                    case "filter": filterMessages(dataEntry, mailbox);break;
                     default:
                         System.out.println("commands:\n -send \n -update \n -list \n -sort \n " +
                                 "-filter");break;
@@ -103,7 +103,7 @@ public class TestCLIMain {
     }
 
     //TODO en el caso de que tuvieran esa palabra en el subject y el body el mensaje se duplicaria pero lo miraré más adelante
-    static void filterMessages(ArrayList<String> dataEntry, Mailbox mailbox, MailSystem mailSystem){
+    static void filterMessages(ArrayList<String> dataEntry, Mailbox mailbox){
         switch (dataEntry.get(1)) {
             case "contains":
                 List<Message> subjList = mailbox.filterMail(filterBySubject(dataEntry.get(2)));

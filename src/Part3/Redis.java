@@ -9,19 +9,33 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-
+/**
+ * Class Redis
+ * @author Marc García
+ * @version 1.0
+ */
 public class Redis {
     private Jedis jedis = new Jedis("localhost");
     private static Redis instance;
 
+    /**
+     * Private constructor
+     */
     private Redis() {
     }
 
+    /**
+     * Method to get instance of Redis
+     */
     public static Redis getInstance(){
         if (instance == null) instance = new Redis();
         return instance;
     }
 
+    /**
+     * Method to save message in Redis server
+     * @param message
+     */
     public void putData(Message message){
 
         String data = message.getTimestamp().toString();
@@ -31,6 +45,12 @@ public class Redis {
 
     }
 
+    /**
+     * Method to get a list of messages from Redis server
+     * @param username
+     * @return a list of messages
+     * @throws ParseException
+     */
     public List<Message> getData(String username) throws ParseException {
         List<String> list = jedis.lrange(username, 0, -1);
         List<Message> result = new LinkedList<>();

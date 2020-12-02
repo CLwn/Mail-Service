@@ -2,11 +2,24 @@ package Structure;
 
 import java.sql.Timestamp;
 
+/**
+ * Class Message
+ * @author Marc García
+ * @version 1.0
+ */
 public class Message {
-    private String sender, receiver; //we have to use their usernames
+    private String sender, receiver;
     private String body, subject;
-    private Timestamp timestamp; //message creation
+    private Timestamp timestamp;
 
+    /**
+     * Constructor with 5 parameters
+     * @param sender
+     * @param receiver
+     * @param subject
+     * @param body
+     * @param timestamp
+     */
     public Message(String sender, String receiver, String subject, String body, Timestamp timestamp) {
         this.sender = sender;
         this.receiver = receiver;
@@ -15,46 +28,66 @@ public class Message {
         this.timestamp = timestamp;
     }
 
+    /**
+     * Method to get a sender
+     * @return sender
+     */
     public String getSender() {
         return sender;
     }
 
-    public void setSender(String sender) {
-        this.sender = sender;
-    }
-
+    /**
+     * Method to get a receiver
+     * @return receiver
+     */
     public String getReceiver() {
         return receiver;
     }
 
-    public void setReceiver(String receiver) {
-        this.receiver = receiver;
-    }
-
+    /**
+     * Method to get a body
+     * @return body
+     */
     public String getBody() {
         return body;
     }
 
+    /**
+     * Method to modify a body
+     * @param body
+     */
     public void setBody(String body) {
         this.body = body;
     }
 
+    /**
+     * Method to get a subject
+     * @return subject
+     */
     public String getSubject() {
         return subject;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
+    /**
+     * Method to get a timestamp
+     * @return timestamp
+     */
     public Timestamp getTimestamp() {
         return timestamp;
     }
 
+    /**
+     * Method to modify a timestamp
+     * @param timestamp
+     */
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
 
+    /**
+     * Method to print information about instances from this class
+     * @return String
+     */
     @Override
     public String toString() {
         return "-------Message----------" +"\n"+

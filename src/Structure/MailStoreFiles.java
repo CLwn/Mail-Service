@@ -1,17 +1,24 @@
 package Structure;
 
-import Structure.MailStore;
-import Structure.Message;
-
 import java.io.*;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * Class MailStoreFiles
+ * @author Marc García
+ * @version 1.0
+ */
 public class MailStoreFiles implements MailStore {
     private File file = new File("mailStore.txt");
 
+    /**
+     * Method to send messages
+     * @param message
+     * @throws IOException
+     */
     @Override
     public void sendMail(Message message) throws IOException {
         FileWriter fos = new FileWriter(file, true);
@@ -24,6 +31,13 @@ public class MailStoreFiles implements MailStore {
         pos.close();
     }
 
+    /**
+     * Method to get a messages list
+     * @param username
+     * @return messages list
+     * @throws IOException
+     * @throws ParseException
+     */
     @Override
     public List<Message> getMail(String username) throws IOException, ParseException {
         List<Message> list = new LinkedList<>();
