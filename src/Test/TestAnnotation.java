@@ -1,26 +1,23 @@
 package Test;
 
-import FactoryPattern.RedisMailStoreFactory;
+
 import Structure.MailSystem;
 import Structure.Mailbox;
 import Structure.Message;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
-
 import static utilities.Comparators.orderBySender;
 import static utilities.Comparators.orderByTimestamp;
 import static utilities.Predicates.*;
 import static utilities.Predicates.filterByAge;
 
-public class TestRedisMain {
+public class TestAnnotation {
     public static void main(String[] args) throws Exception {
-
         //Initialize mail system
         MailSystem mailSystem = new MailSystem();
 
         //Create new type of mailStore
-        mailSystem.createMailStore(new RedisMailStoreFactory());
         mailSystem.readAnnotation();
 
         //Create users
@@ -104,6 +101,5 @@ public class TestRedisMain {
 
         System.out.println("---------------------------COUNT WORDS--------------------------");
         mailSystem.countWords("David");
-
     }
 }

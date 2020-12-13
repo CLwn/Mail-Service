@@ -1,21 +1,29 @@
 package Structure;
 
 import FactoryPattern.MailStoreFactory;
-
+import FactoryPattern.MailStoreFilesFactory;
+import FactoryPattern.MailStoreMemoryFactory;
+import FactoryPattern.RedisMailStoreFactory;
+import Proxy.DynamicProxy;
+import Reflection.Config;
+import java.lang.annotation.Annotation;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 
 /**
  * Class MailSystem
  * @author Marc García
  * @version 1.0
  */
+@Config(store="MailStoreFiles", log=true)
 public class MailSystem{
     private List<User> userList = new LinkedList<>();
     private List<Mailbox> mailboxList = new LinkedList<>();
     private MailStore mailStore;
+
 
 
     /**
@@ -194,5 +202,27 @@ public class MailSystem{
     public void createMailStore(MailStoreFactory factory){
         mailStore = factory.createMailStore();
     }
+
+    /**
+     * Method to read annotations of Config
+     */
+    public void readAnnotation() {
+        Class metaObject = this.getClass();
+
+        Annotation annotation = metaObject.getAnnotation(Config.class);
+        Config config = (Config) annotation;
+
+        String store = config.store();
+        switch (store){
+            case "MailStoreFiles": createMailStore(new MailStoreFilesFactory());break;
+            case "MailStoreMemory": createMailStore(new MailStoreMemoryFactory());break;
+            case "RedisMailStore": createMailStore(new RedisMailStoreFactory());break;
+            default:System.out.println("WARNING: Write a correct store");break;
+        }
+
+        if (config.log())  mailStore = (MailStore) DynamicProxy.newInstance(mailStore);
+
+    }
+
 
 }
