@@ -1,6 +1,7 @@
 package Structure;
 
 import java.sql.Timestamp;
+import java.util.Objects;
 
 /**
  * Class Message
@@ -96,5 +97,18 @@ public class Message {
                 "subject: " +subject + "\n" +
                 body + "\n" +
                 timestamp;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Message)) return false;
+        Message message = (Message) o;
+        return Objects.equals(sender, message.sender) && Objects.equals(receiver, message.receiver) && Objects.equals(body, message.body) && Objects.equals(subject, message.subject) && Objects.equals(timestamp, message.timestamp);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(sender, receiver, body, subject, timestamp);
     }
 }

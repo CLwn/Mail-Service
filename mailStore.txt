@@ -1,6 +1,3 @@
 
-josh;david01;Welcome;i+u0POHPNWCxWdDeN7oAUDNDt8Tgvl0RH6mP4At8NQo=;2020-12-13 17:29:48.623;
-josh;david;Welcome;i+u0POHPNWCxWdDeN7oAUDNDt8Tgvl0RH6mP4At8NQo=;2020-12-13 17:29:49.869;
-david01;josh;Urgent;8U5DAA6dpY9grTWefXK565gaiuPw4Pwfq0obkHFgCQEV7Il31S0eSgjVyI+KzexGMRweIJda/SLkZOaDIs2wjw==;2020-12-13 17:29:50.872;
-david01;david;Teammates;p2xrFZqKqDnO1C+D26JCHyqKcNchLTbDq429f/ARnTc=;2020-12-13 17:29:51.873;
-david;david01;Teammates;506WcjlWTNewoCSA7WyowwB2bybd0u1197IG37zBA40=;2020-12-13 17:29:52.874;
+david;josh;Urgent;Hi Josh, I need access into logs directory, thanks.;2020-12-15 13:26:23.108;
+david;josh;Urgent;Hi Josh, I need access into logs directory, thanks.;2020-12-15 13:26:41.661;

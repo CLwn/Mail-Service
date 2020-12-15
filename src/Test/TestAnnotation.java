@@ -49,6 +49,8 @@ public class TestAnnotation {
         System.out.println("---------------------------ORDER BY TIMESTAMP--------------------------");
         //List messages by newer first
         davidbox.getMail(orderByTimestamp());
+        System.out.println("--------------------------------------------------------------------------------------");
+        for (Message message: joshbox.listMail()) System.out.println(message.toString());
 
         System.out.println("---------------------------ORDER BY USERNAME SENDER--------------------------");
         //List messages by username sender

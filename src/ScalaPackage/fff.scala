@@ -1,0 +1,5 @@
+package ScalaPackage
+
+class fff {
+
+}

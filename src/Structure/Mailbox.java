@@ -2,13 +2,9 @@ package Structure;
 
 import ObserverPattern.Observable;
 import ObserverPattern.Observer;
-import ObserverPattern.SpamUserFilter;
-import ObserverPattern.TooLongFilter;
-
 import javax.crypto.NoSuchPaddingException;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
@@ -52,7 +48,7 @@ public class Mailbox implements Observable {
      * @param username
      * @throws Exception
      */
-    public void updateMail(String username) throws Exception { //utilitzar streams??
+    public void updateMail(String username) throws Exception {
         box = store.getMail(username);
         notifyAllObservers();
     }
@@ -142,4 +138,6 @@ public class Mailbox implements Observable {
     public List<Message> getSpam() {
         return spam;
     }
+
+
 }
