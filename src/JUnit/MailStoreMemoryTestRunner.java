@@ -6,7 +6,7 @@ import org.junit.runner.notification.Failure;
 
 public class MailStoreMemoryTestRunner {
     public static void main(String[] args) {
-        Result result = JUnitCore.runClasses(MailboxTest.class);
+        Result result = JUnitCore.runClasses(MailStoreMemoryTest.class);
         for (Failure failure : result.getFailures()) {
             System.out.println(failure.toString());
         }

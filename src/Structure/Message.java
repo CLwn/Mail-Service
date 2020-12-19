@@ -104,7 +104,7 @@ public class Message {
         if (this == o) return true;
         if (!(o instanceof Message)) return false;
         Message message = (Message) o;
-        return Objects.equals(sender, message.sender) && Objects.equals(receiver, message.receiver) && Objects.equals(body, message.body) && Objects.equals(subject, message.subject) && Objects.equals(timestamp, message.timestamp);
+        return Objects.equals(sender, message.sender) && Objects.equals(receiver, message.receiver) && Objects.equals(body, message.body) && Objects.equals(subject, message.subject);// && Objects.equals(timestamp, message.timestamp);
     }
 
     @Override

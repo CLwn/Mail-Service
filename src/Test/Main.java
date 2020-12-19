@@ -191,7 +191,7 @@ public class Main {
         System.out.println("---------------------------COUNT WORDS--------------------------");
         mailSystem.countWords("David");
 
-        System.out.println("---------------------------CHANGE IMPLEMENTATION OF MAIL SYSTEM--------------------------");
+        System.out.println("---------------------------CHANGE IMPLEMENTATION OF MAIL SYSTEM (FILE)--------------------------");
         mailSystem.createMailStore(new MailStoreFilesFactory());
 
         //Move users to new Store
