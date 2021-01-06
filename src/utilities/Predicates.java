@@ -1,11 +1,9 @@
 package utilities;
 
-import Structure.Message;
-import Structure.User;
+import structure.Message;
+import structure.User;
 
-import javax.management.remote.JMXServerErrorException;
 import java.sql.Timestamp;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 public class Predicates {
@@ -21,6 +19,7 @@ public class Predicates {
     public static Predicate<Message>filterSubjectSingleWord(String word){
         return message -> message.getSubject().equalsIgnoreCase(word);
     }
+
     public static Predicate<Message> filterByTimestamp(Timestamp timestamp){
         return message -> message.getTimestamp().equals(timestamp);
     }

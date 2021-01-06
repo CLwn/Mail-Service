@@ -1,5 +1,0 @@
-package ScalaPackage
-
-class fff {
-
-}

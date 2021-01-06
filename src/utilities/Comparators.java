@@ -1,6 +1,6 @@
 package utilities;
 
-import Structure.Message;
+import structure.Message;
 
 import java.util.Comparator;
 

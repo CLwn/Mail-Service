@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"decoratorpattern"},{"l":"factorypattern"},{"l":"junit"},{"l":"observerpattern"},{"l":"part3"},{"l":"proxy"},{"l":"reflection"},{"l":"strategypattern"},{"l":"structure"},{"l":"test"},{"l":"utilities"}]
