@@ -1,5 +1,5 @@
 # Mail-Service
-Para ejecutar el CLI abrimos desde Intellij una consola en la dirección /Mail-Service/out/production/Mail-Service
+Para ejecutar el CLI abrimos desde Intellij una consola en la dirección /Mail-Service/out/production/Mail-Service. debemos escribir java TestCLIMain - (necesitamos escribir almenos un parámetro que nos da igual al iniciar)
 
 Comandos para CLI:
 
