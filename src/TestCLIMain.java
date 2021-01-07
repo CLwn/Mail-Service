@@ -1,5 +1,3 @@
-package test;
-
 import factorypattern.MailStoreFilesFactory;
 import structure.*;
 
